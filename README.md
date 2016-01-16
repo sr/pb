@@ -1,0 +1,5 @@
+[![CircleCI](https://circleci.com/gh/peter-edge/pb/tree/master.png)](https://circleci.com/gh/peter-edge/pb/tree/master)
+[![Go Report Card](http://goreportcard.com/badge/peter-edge/pb)](http://goreportcard.com/report/peter-edge/pb)
+[![GoDoc](http://img.shields.io/badge/GoDoc-Reference-blue.svg)](https://godoc.org/go.pedge.io/pb/go)
+[![GoDoc](http://img.shields.io/badge/GoDoc-Reference-blue.svg)](https://godoc.org/go.pedge.io/pb/gogo)
+[![MIT License](http://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/peter-edge/pb/blob/master/LICENSE)
