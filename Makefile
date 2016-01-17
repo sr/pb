@@ -54,6 +54,7 @@ proto:
 		--gogo-no-default-modifiers \
 		--gogo-import-path go.pedge.io/pb/gogo \
 		--gogo-modifier google/protobuf/descriptor.proto=github.com/gogo/protobuf/protoc-gen-gogo/descriptor \
+		--no-default-includes \
 		--exclude google/protobuf/descriptor.proto \
 		--out . \
 		proto
