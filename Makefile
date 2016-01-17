@@ -43,27 +43,17 @@ genpb:
 proto:
 	go get -v go.pedge.io/protoeasy/cmd/protoeasy
 	go get -v go.pedge.io/pkg/cmd/strip-package-comments
-	mkdir -p go/google/descriptor
-	mkdir -p gogo/google/descriptor
-	protoc \
-		--go_out=go/google/descriptor \
-		--gogofast_out=gogo/google/descriptor \
-		proto/google/protobuf/descriptor.proto
-	mv go/google/descriptor/proto/google/protobuf/descriptor.pb.go go/google/descriptor
-	mv gogo/google/descriptor/proto/google/protobuf/descriptor.pb.go gogo/google/descriptor
-	rm -rf go/google/descriptor/proto
-	rm -rf gogo/google/descriptor/proto
 	protoeasy \
 		--go \
 		--go-rel-out go \
 		--go-no-default-modifiers \
 		--go-import-path go.pedge.io/pb/go \
-		--go-modifier google/protobuf/descriptor.proto=go.pedge.io/pb/go/google/descriptor \
+		--go-modifier google/protobuf/descriptor.proto=github.com/golang/protobuf/protoc-gen-go/descriptor \
 		--gogo \
 		--gogo-rel-out gogo \
 		--gogo-no-default-modifiers \
 		--gogo-import-path go.pedge.io/pb/gogo \
-		--gogo-modifier google/protobuf/descriptor.proto=go.pedge.io/pb/gogo/google/descriptor \
+		--gogo-modifier google/protobuf/descriptor.proto=github.com/gogo/protobuf/protoc-gen-gogo/descriptor \
 		--exclude google/protobuf/descriptor.proto \
 		--out . \
 		proto
