@@ -33,6 +33,8 @@ dl:
 	for file in $$(ls /tmp/google-protobuf/src/google/protobuf/*\.proto | grep -v test); do \
 		cp $$file proto/google/protobuf/; \
 	done
+	mkdir -p proto/gogoproto
+	curl -sSL https://raw.githubusercontent.com/gogo/protobuf/master/gogoproto/gogo.proto > proto/gogoproto/gogo.proto
 
 gen:
 	sh -x etc/bin/gen-money.sh
@@ -55,11 +57,13 @@ gen:
 		--gogo-rel-out gogo \
 		--gogo-no-default-modifiers \
 		--gogo-import-path go.pedge.io/pb/gogo \
+		--gogo-modifier gogoproto/gogo.proto=github.com/gogo/protobuf/gogoproto \
 		--gogo-modifier google/protobuf/descriptor.proto=github.com/gogo/protobuf/protoc-gen-gogo/descriptor \
 		--gogo-modifier google/api/annotations.proto=github.com/peter-edge/grpc-gateway-gogo/third_party/googleapis/google/api \
 		--gogo-modifier google/api/http.proto=github.com/peter-edge/grpc-gateway-gogo/third_party/googleapis/google/api \
 		--gogo-plugin gogo \
 		--no-default-includes \
+		--exclude gogoproto/gogo.proto \
 		--exclude google/protobuf/descriptor.proto \
 		--exclude google/api/annotations.proto \
 		--exclude google/api/http.proto \
