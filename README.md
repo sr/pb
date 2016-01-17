@@ -10,6 +10,9 @@ Compiled well-known types from google/protobuf, compiled types from googleapis, 
 
 Compiled for both golang/protobuf and gogo/protobuf.
 
+Successor to [go.pedge.io/google-protobuf](https://go.pedge.io/google-protobuf) and [go.pedge.io/googleapis](https://go.pedge.io/googleapis), plus the extra
+protos in [proto/pb](proto/pb), and lots more fun from generated code in [etc/tmpl](etc/tmpl). Specifically check out the geo and money packages.
+
 ### Using
 
 You need to put the proto directory on protoc's import path:
