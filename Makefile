@@ -2,8 +2,6 @@ all: gen test
 
 dlgen: dl gen
 
-gen: genpb proto build
-
 deps:
 	go get -d -v ./...
 
@@ -36,13 +34,13 @@ dl:
 		cp $$file proto/google/protobuf/; \
 	done
 
-genpb:
+gen:
 	sh -x etc/bin/gen-money.sh
 	sh -x etc/bin/gen-geo.sh
+	mkdir -p go/google/protobuf
+	mkdir -p gogo/google/protobuf
 	cp etc/tmpl/google/protobuf/protobuf.gen.go.tmpl go/google/protobuf/protobuf.gen.go
 	cp etc/tmpl/google/protobuf/protobuf.gen.go.tmpl gogo/google/protobuf/protobuf.gen.go
-
-proto:
 	go get -v go.pedge.io/protoeasy/cmd/protoeasy
 	go get -v go.pedge.io/pkg/cmd/strip-package-comments
 	protoeasy \
@@ -51,14 +49,20 @@ proto:
 		--go-no-default-modifiers \
 		--go-import-path go.pedge.io/pb/go \
 		--go-modifier google/protobuf/descriptor.proto=github.com/golang/protobuf/protoc-gen-go/descriptor \
+		--go-modifier google/api/annotations.proto=github.com/gengo/grpc-gateway/third_party/googleapis/google/api \
+		--go-modifier google/api/http.proto=github.com/gengo/grpc-gateway/third_party/googleapis/google/api \
 		--gogo \
 		--gogo-rel-out gogo \
 		--gogo-no-default-modifiers \
 		--gogo-import-path go.pedge.io/pb/gogo \
 		--gogo-modifier google/protobuf/descriptor.proto=github.com/gogo/protobuf/protoc-gen-gogo/descriptor \
+		--gogo-modifier google/api/annotations.proto=github.com/peter-edge/grpc-gateway-gogo/third_party/googleapis/google/api \
+		--gogo-modifier google/api/http.proto=github.com/peter-edge/grpc-gateway-gogo/third_party/googleapis/google/api \
 		--gogo-plugin gogo \
 		--no-default-includes \
 		--exclude google/protobuf/descriptor.proto \
+		--exclude google/api/annotations.proto \
+		--exclude google/api/http.proto \
 		--out . \
 		proto
 	find . -name *\.pb\*\.go | xargs strip-package-comments
@@ -98,8 +102,7 @@ clean:
 	build \
 	install \
 	dl \
-	genpb \
-	proto \
+	gen \
 	lint \
 	vet \
 	errcheck \

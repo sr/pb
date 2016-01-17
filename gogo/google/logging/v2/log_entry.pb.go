@@ -7,7 +7,7 @@ package google_logging_v2
 import proto "github.com/gogo/protobuf/proto"
 import fmt "fmt"
 import math "math"
-import _ "go.pedge.io/pb/gogo/google/api"
+import _ "github.com/peter-edge/grpc-gateway-gogo/third_party/googleapis/google/api"
 import google_api3 "go.pedge.io/pb/gogo/google/api"
 import google_logging_type "go.pedge.io/pb/gogo/google/logging/type"
 import google_logging_type1 "go.pedge.io/pb/gogo/google/logging/type"

@@ -7,7 +7,7 @@ package google_datastore_v1beta3
 import proto "github.com/golang/protobuf/proto"
 import fmt "fmt"
 import math "math"
-import _ "go.pedge.io/pb/go/google/api"
+import _ "github.com/gengo/grpc-gateway/third_party/googleapis/google/api"
 import google_protobuf3 "go.pedge.io/pb/go/google/protobuf"
 
 // Reference imports to suppress errors if they are not otherwise used.

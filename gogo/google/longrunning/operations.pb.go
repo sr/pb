@@ -7,7 +7,7 @@ package google_longrunning
 import proto "github.com/gogo/protobuf/proto"
 import fmt "fmt"
 import math "math"
-import _ "go.pedge.io/pb/gogo/google/api"
+import _ "github.com/peter-edge/grpc-gateway-gogo/third_party/googleapis/google/api"
 import google_protobuf1 "go.pedge.io/pb/gogo/google/protobuf"
 import _ "go.pedge.io/pb/gogo/google/protobuf"
 import google_rpc "go.pedge.io/pb/gogo/google/rpc"
