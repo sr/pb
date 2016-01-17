@@ -19,7 +19,7 @@ protoc -I /path/to/go/src/go.pedge.io/pb/proto ...
 ```
 
 [protoeasy](https://go.pedge.io/protoeasy) will directly import all proto files from the proto directory to compile against
-unless otherwise specified, so for example to use [proto/pb/money/money.proto], just do:
+unless otherwise specified, so for example to use [proto/pb/money/money.proto](proto/pb/money/money.proto), just do:
 
 ```
 import "pb/money/money".proto
