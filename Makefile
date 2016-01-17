@@ -83,7 +83,7 @@ errcheck: testdeps
 	go get -v github.com/kisielk/errcheck
 	errcheck ./...
 
-pretest: lint vet errcheck
+pretest: lint vet
 
 test: pretest
 	go test ./...
