@@ -1,4 +1,4 @@
-package pbmoney // import "go.pedge.io/pb/go/pb/money"
+package pbmoney
 
 import (
 	"fmt"

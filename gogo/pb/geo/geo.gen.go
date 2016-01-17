@@ -1,4 +1,4 @@
-package pbgeo // import "go.pedge.io/pb/gogo/pb/geo"
+package pbgeo
 
 import (
 	"fmt"
