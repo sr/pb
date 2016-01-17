@@ -39,6 +39,8 @@ dl:
 genpb:
 	sh -x etc/bin/gen-money.sh
 	sh -x etc/bin/gen-geo.sh
+	cp etc/tmpl/google/protobuf/protobuf.gen.go.tmpl go/google/protobuf/protobuf.gen.go
+	cp etc/tmpl/google/protobuf/protobuf.gen.go.tmpl gogo/google/protobuf/protobuf.gen.go
 
 proto:
 	go get -v go.pedge.io/protoeasy/cmd/protoeasy
@@ -63,7 +65,7 @@ proto:
 
 lint: testdeps
 	go get -v github.com/golang/lint/golint
-	for file in $$(find go -name '*.go' | grep -v '\.pb\.go' | grep -v '\.pb\.gw\.go'); do \
+	for file in $$(find go -name '*.go' | grep -v '\.pb\.go' | grep -v '\.pb\.gw\.go' | grep -v "protobuf.gen.go"); do \
 		golint $$file; \
 		if [ -n "$$(golint $$file)" ]; then \
 			exit 1; \

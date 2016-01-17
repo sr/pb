@@ -6,10 +6,10 @@ DIR="$(cd "$(dirname "${0}")/../.." && pwd)"
 cd "${DIR}"
 
 export CSV_FILE="etc/data/country-codes.csv"
-export GO_TMPL_FILE="etc/tmpl/money.gen.go.tmpl"
+export GO_TMPL_FILE="etc/tmpl/pb/money/money.gen.go.tmpl"
 export GO_FILE="go/pb/money/money.gen.go"
 export GOGO_FILE="gogo/pb/money/money.gen.go"
-export PB_TMPL_FILE="etc/tmpl/money.gen.proto.tmpl"
+export PB_TMPL_FILE="etc/tmpl/pb/money/money.gen.proto.tmpl"
 export PB_FILE="proto/pb/money/money.gen.proto"
 
 mkdir -p go/pb/money
