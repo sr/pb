@@ -103,31 +103,35 @@ type tmplFile struct {
 
 func getTmplFiles(generateEnv *GenerateEnv) ([]*tmplFile, error) {
 	var tmplFiles []*tmplFile
-	for _, goTmplFilePath := range strings.Split(generateEnv.GoTmplFiles, ",") {
-		for _, t := range []string{"go", "gogo"} {
+	if generateEnv.GoTmplFiles != "" {
+		for _, goTmplFilePath := range strings.Split(generateEnv.GoTmplFiles, ",") {
+			for _, t := range []string{"go", "gogo"} {
+				tmplFile, err := getTmplFile(
+					generateEnv.RepoDir,
+					generateEnv.TmplDir,
+					goTmplFilePath,
+					t,
+				)
+				if err != nil {
+					return nil, err
+				}
+				tmplFiles = append(tmplFiles, tmplFile)
+			}
+		}
+	}
+	if generateEnv.PbTmplFiles != "" {
+		for _, pbTmplFilePath := range strings.Split(generateEnv.PbTmplFiles, ",") {
 			tmplFile, err := getTmplFile(
 				generateEnv.RepoDir,
 				generateEnv.TmplDir,
-				goTmplFilePath,
-				t,
+				pbTmplFilePath,
+				"proto",
 			)
 			if err != nil {
 				return nil, err
 			}
 			tmplFiles = append(tmplFiles, tmplFile)
 		}
-	}
-	for _, pbTmplFilePath := range strings.Split(generateEnv.PbTmplFiles, ",") {
-		tmplFile, err := getTmplFile(
-			generateEnv.RepoDir,
-			generateEnv.TmplDir,
-			pbTmplFilePath,
-			"proto",
-		)
-		if err != nil {
-			return nil, err
-		}
-		tmplFiles = append(tmplFiles, tmplFile)
 	}
 	return tmplFiles, nil
 }
