@@ -37,12 +37,9 @@ dl:
 	curl -sSL https://raw.githubusercontent.com/gogo/protobuf/master/gogoproto/gogo.proto > proto/gogoproto/gogo.proto
 
 gen:
-	sh -x etc/bin/gen-money.sh
 	sh -x etc/bin/gen-geo.sh
-	mkdir -p go/google/protobuf
-	mkdir -p gogo/google/protobuf
-	cp etc/tmpl/google/protobuf/protobuf.gen.go.tmpl go/google/protobuf/protobuf.gen.go
-	cp etc/tmpl/google/protobuf/protobuf.gen.go.tmpl gogo/google/protobuf/protobuf.gen.go
+	sh -x etc/bin/gen-google-protobuf.sh
+	sh -x etc/bin/gen-money.sh
 	go get -v go.pedge.io/protoeasy/cmd/protoeasy
 	go get -v go.pedge.io/pkg/cmd/strip-package-comments
 	protoeasy \

@@ -22,7 +22,7 @@ type tmplElem struct {
 }
 
 func main() {
-	common.Main(&generateHelper{})
+	common.CSVMain(&generateHelper{})
 }
 
 type generateHelper struct{}
