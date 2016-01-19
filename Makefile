@@ -37,8 +37,8 @@ dl:
 	curl -sSL https://raw.githubusercontent.com/gogo/protobuf/master/gogoproto/gogo.proto > proto/gogoproto/gogo.proto
 
 gen:
+	sh -x etc/bin/gen-blank.sh
 	sh -x etc/bin/gen-geo.sh
-	sh -x etc/bin/gen-google-protobuf.sh
 	sh -x etc/bin/gen-money.sh
 	go get -v go.pedge.io/protoeasy/cmd/protoeasy
 	go get -v go.pedge.io/pkg/cmd/strip-package-comments
@@ -70,9 +70,9 @@ gen:
 
 lint: testdeps
 	go get -v github.com/golang/lint/golint
-	for file in $$(find go -name '*.go' | grep -v '\.pb\.go' | grep -v '\.pb\.gw\.go' | grep -v "protobuf.gen.go"); do \
+	for file in $$(find go -name '*.go' | grep -v '\.pb\.go' | grep -v '\.pb\.gw\.go'); do \
 		golint $$file; \
-		if [ -n "$$(golint $$file)" ]; then \
+		if [ -n "$$(golint $$file | grep -v underscore)" ]; then \
 			exit 1; \
 		fi; \
 	done
