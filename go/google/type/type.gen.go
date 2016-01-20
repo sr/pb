@@ -29,15 +29,15 @@ func TimeToDate(t time.Time) *Date {
 	return NewDate(int32(t.Day()), int32(t.Month()), int32(t.Year()))
 }
 
-// Time converts a Date to a golang Time.
-func (d *Date) Time() time.Time {
+// GoTime converts a Date to a golang Time.
+func (d *Date) GoTime() time.Time {
 	if d == nil {
 		return time.Unix(0, 0).UTC()
 	}
 	return time.Date(int(d.Year), time.Month(d.Month), int(d.Day), 0, 0, 0, 0, time.UTC)
 }
 
-// Before returns true if i is before j.
+// Before returns true if d is before j.
 func (d *Date) Before(j *Date) bool {
 	if j == nil {
 		return false
