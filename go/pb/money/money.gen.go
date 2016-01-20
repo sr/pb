@@ -1794,6 +1794,9 @@ func (m *Money) Units() int64 {
 
 // SimpleString returns the simple string for the Money.
 func (m *Money) SimpleString() string {
+	if m == nil {
+		return ""
+	}
 	units, microPart := microsToUnitsAndMicroPart(m.ValueMicros)
 	if microPart < 0 {
 		microPart = -microPart
