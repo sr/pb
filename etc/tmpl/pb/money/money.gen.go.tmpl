@@ -158,6 +158,20 @@ func (m *Money) ToGoogleMoney() *google_type.Money {
 	}
 }
 
+// LessThan returns true if m is less than j, or error if m and j's CurrencyCodes are not the same.
+func (m *Money) LessThan(j *Money) (bool, error) {
+	if j == nil {
+		return false, nil
+	}
+	if m == nil {
+		return true, nil
+	}
+	if m.CurrencyCode != j.CurrencyCode {
+		return false, fmt.Errorf("pbmoney: currency codes %s and %s do not match", m.CurrencyCode.SimpleString(), j.CurrencyCode.SimpleString())
+	}
+	return m.ValueMicros < j.ValueMicros, nil
+}
+
 // IsZero returns true if ValueMicros == 0.
 func (m *Money) IsZero() bool {
 	return m.ValueMicros == 0
