@@ -1806,6 +1806,11 @@ func (m *Money) Units() int64 {
 	return units
 }
 
+// Float returns the value of Money as a float, not in micros.
+func (m *Money) Float() float64 {
+	return microsToFloat(m.ValueMicros)
+}
+
 // SimpleString returns the simple string for the Money.
 func (m *Money) SimpleString() string {
 	if m == nil {
@@ -2106,4 +2111,8 @@ func unitsToMicros(units int64) int64 {
 
 func floatUnitsToMicros(floatUnits float64) int64 {
 	return int64(floatUnits * 1000000.0)
+}
+
+func microsToFloat(micros int64) float64 {
+	return float64(micros) / 1000000.0
 }
